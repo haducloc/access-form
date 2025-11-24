@@ -2,7 +2,14 @@
 
 ## Description
 
-Template for an Access form that edits a single record with Save/Delete buttons and refreshes a parent form's subform when closed.
+- This template is for an Access form used to edit a **single record** with Save and Delete buttons.
+- The form can be opened **directly**, or it can be opened **from the parent form** (`ReturnTracking_MainForm`).
+- The form supports both **editing an existing record** and **adding a new record**.
+- The **Delete** button is enabled only when editing an existing record (disabled for new records).
+- In the **Save** button click event, you can insert custom input validation and display error messages if needed.
+- When this form closes, it will automatically refresh the **subform on the parent form** (if the parent is open) so that the latest data is displayed.
+
+---
 
 ## Code
 
@@ -65,21 +72,23 @@ End Sub
 
 
 ' FORM CLOSE EVENT
-' When this edit form closes, refresh the parent form's subform (if parent is open).
+' When this form closes, refresh the parent form's subform (if the parent form is open).
 Private Sub Form_Close()
 
     Dim parentFormName As String
     Dim subFormName As String
     Dim frmParent As Form
 
-    ' Parent and subform control names
+    ' Parent form and subform CONTROL names
     parentFormName = "ReturnTracking_MainForm"
+
+    ' NOTE: This is the subform CONTROL name, not the form object name.
     subFormName = "ReturnTrackingQuery_Subform"
 
-    ' Only requery if parent form is open
+    ' Only refresh if the parent form is currently open
     If CurrentProject.AllForms(parentFormName).IsLoaded Then
 
-        ' Reference parent form
+        ' Get reference to the parent form
         Set frmParent = Forms(parentFormName)
 
         ' Refresh the listing subform
@@ -91,7 +100,7 @@ End Sub
 
 
 ' FORM LOAD EVENT
-' Disable Delete button when on a new (unsaved) record.
+' Disable the Delete button when the form is adding a new (unsaved) record.
 Private Sub Form_Load()
     Me.btnDelete.Enabled = Not Me.NewRecord
 End Sub
