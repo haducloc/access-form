@@ -1,4 +1,4 @@
-# Main Form – Beginner-Friendly Search Code
+# Main Form – Custom Form for Searching record - VBA Code
 
 ## Description
 
@@ -11,8 +11,8 @@
 
 ### Controls Used
 
-- **Search button** → `btnSearch`  
-- **Add New button** → `btnAddNew`  
+- **Search button** → `btnSearch`
+- **Add New button** → `btnAddNew`
 - **Subform control** → `ReturnTrackingQuery_Subform`  
   (This is the **subform CONTROL name**, not the form object name.)
 
