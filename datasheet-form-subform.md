@@ -1,16 +1,17 @@
-# Datasheet SubForm – VBA Module
+# Multi-records/Datasheet Form – Form Code Module VBA
 
 ## Description
 
-This template is for a datasheet-style subform.  
-When the user **double-clicks** a row, an Edit Form opens and the selected record’s primary key (`ApplicantID`) is passed using a `WHERE` clause.
+- This form is bound to a **multi-record dataset** (table or query).
+- The form is displayed in **datasheet view**.
+- When the user **double-clicks** a row, an Edit Form opens and the selected record's primary key (`ApplicantID`) is passed using a `WHERE` clause.
 
 ### Assumptions
 
-- The subform is bound to **multiple records**
+- The form displays **multiple records**
 - The user double-clicks a row to edit that specific record
 - The key field **ApplicantID** exists in the form's RecordSource
-- `ApplicantID` is usually numeric, but notes are included for string keys
+- The key can be numeric or string.
 
 ---
 
