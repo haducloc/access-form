@@ -3,9 +3,10 @@ A compact, control-based validation framework for Microsoft Access forms.
 Supports **text**, **integer**, **double**, and **date** validation with:
 
 - Automatic trimming  
-- Required/optional logic  
-- Writing cleaned values back into the control  
-- Returning a `ValidationResult` structure
+- Required/optional validation logic  
+- Writes cleaned values back into the control  
+- Returns a standardized `ValidationResult` structure  
+- Implemented as a reusable library module that can be used in any Form code module or imported into other Access databases  
 
 ---
 
