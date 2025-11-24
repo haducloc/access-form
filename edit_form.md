@@ -1,13 +1,13 @@
-# Edit Single Record Form – VBA Module
+# Edit Single Record Form – Custom Form - Form Code Module VBA
 
 ## Description
 
-- This template is for an Access form used to edit a **single record** with Save and Delete buttons.
-- The form can be opened **directly**, or it can be opened **from the parent form** (`ReturnTracking_MainForm`).
-- The form supports both **editing an existing record** and **adding a new record**.
-- The **Delete** button is enabled only when editing an existing record (disabled for new records).
-- In the **Save** button click event, you can insert custom input validation and display error messages if needed.
-- When this form closes, it will automatically refresh the **subform on the parent form** (if the parent is open) so that the latest data is displayed.
+- This template is for an Access form that edits a **single record**, with **Save** and **Delete** buttons.
+- The form can be opened **directly**, or it can be opened from the **parent form** (`ReturnTracking_MainForm`).
+- The form supports both **editing an existing record** and **creating a new record**.
+- The **Delete** button is enabled only when editing an existing record; it is disabled for new records.
+- In the **Save** button’s Click event, you can perform validation and display error messages as needed.
+- When the form closes, it will automatically refresh the **subform on the parent form** (if the parent form is open) so the latest data is displayed.
 
 ---
 
