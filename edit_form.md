@@ -16,6 +16,7 @@
 ```vba
 Option Compare Database
 Option Explicit
+Private InSaveClickContext As Boolean
 
 ' Template: Edit Single Record Form
 '
@@ -52,24 +53,29 @@ End Sub
 ' SAVE BUTTON CLICK
 ' Saves the current record and closes the form.
 Private Sub btnSave_Click()
+    Dim v As ValidationResult
 
     On Error GoTo ErrHandler
 
-    ' Save the record
+    InSaveClickContext = True
     DoCmd.RunCommand acCmdSaveRecord
+    InSaveClickContext = False
 
-    ' Optional:
-    ' MsgBox "Record saved!", vbInformation
-
-    ' Close the form
     DoCmd.Close acForm, Me.Name
     Exit Sub
 
 ErrHandler:
-    MsgBox "Error saving record: " & Err.Description, vbCritical
-
+    MsgBox "Unexpected error: " & Err.Description, vbCritical
+    InSaveClickContext = False
 End Sub
 
+' FORM BEFORE UPDATE
+' Disable saving automatically for any input value changes
+Private Sub Form_BeforeUpdate(Cancel As Integer)
+    If InSaveClickContext = False Then
+        Cancel = True
+    End If
+End Sub
 
 ' FORM CLOSE EVENT
 ' When this form closes, refresh the parent form's subform (if the parent form is open).
