@@ -11,8 +11,9 @@
 
 - Purpose: To provide the recordSource for the subform on the **main form**.  
 - Determine the tables involved. In this guide, only the **ReturnTracking** table is used.  
-- Apply SQL sorting as needed.  
-- This query must have **no parameters**.  
+- Click SQL Query, Write SQL Query, Apply SQL sorting as needed.
+- This query must have **no parameters**.
+- Property Sheet, Set ODBC Timeout to 600 ( 10 minutes)
 - Save the query as **ReturnTrackingQuery**.
 
 ---
