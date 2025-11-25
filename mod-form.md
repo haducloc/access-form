@@ -74,4 +74,36 @@ End Sub
 Public Sub HandleFormBeforeUpdate(frm As Form, Cancel As Integer)
     If frm.Tag <> "InSaveClickContext" Then Cancel = True
 End Sub
+
+'============================================================
+' HandleFormCloseRefresh
+'
+' Called from the Form_Close event of an edit or child form.
+' If the specified parent form is open, this procedure requeries
+' the specified subform control within that parent form.
+'
+' The routine is intentionally fail-safe: any errors (such as
+' missing controls, wrong names, or forms not being loaded)
+' are ignored to avoid interrupting the close operation.
+'============================================================
+Public Sub HandleFormCloseRefresh(parentFormName As String, subformControlName As String)
+
+    Dim frmParent As Form
+    On Error GoTo ExitHandler   ' Fail softly — never block form close.
+
+    ' Proceed only if the parent form is open and loaded.
+    If Not FormLoaded(parentFormName) Then Exit Sub
+
+    ' Get a reference to the parent form instance.
+    Set frmParent = Forms(parentFormName)
+
+    ' Ensure the named control exists AND is a subform control.
+    If frmParent.Controls(subformControlName).ControlType = acSubform Then
+        frmParent(subformControlName).Form.Requery
+    End If
+
+ExitHandler:
+    ' Silent exit by design; parent form refresh is non-critical.
+    Exit Sub
+End Sub
 ```
