@@ -1,9 +1,5 @@
 # Access VBA Utility Functions  
-### FormExists and FormLoaded
-
-These functions determine:
-- Whether a form exists in the Access project
-- Whether a form is currently open (loaded)
+- Define common utility functions
 
 ---
 
