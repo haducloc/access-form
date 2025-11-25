@@ -13,7 +13,7 @@
 
 - **Search button** → `btnSearch`
 - **Add New button** → `btnAddNew`
-- **Subform control** → `ReturnTrackingQuery_Subform`  
+- **Subform control** → `ReturnTrackingQuery_SubForm`  
   (This is the **subform CONTROL name**, not the form object name.)
 
 ---
@@ -49,7 +49,7 @@ End Sub
 '   txtCtName  - CtName (text)
 '
 ' Subform:
-'   ReturnTrackingQuery_Subform - Displays the search results
+'   ReturnTrackingQuery_SubForm - Displays the search results
 ' --------------------------------------------------------------
 Private Sub btnSearch_Click()
 
@@ -57,7 +57,7 @@ Private Sub btnSearch_Click()
     Dim subformName As String
 
     ' Subform control name on the main form
-    subformName = "ReturnTrackingQuery_Subform"
+    subformName = "ReturnTrackingQuery_SubForm"
 
     ' Start with no filter
     filter = ""
