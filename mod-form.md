@@ -5,6 +5,7 @@
 
 ```vba
 Option Compare Database
+Option Explicit
 
 ' Returns True if a form with the given name exists in the current project.
 Function FormExists(FormName As String) As Boolean
