@@ -48,7 +48,6 @@ End Sub
 ' When this form closes, requery the specified subform on the
 ' parent form—provided the parent form is currently open.
 Private Sub Form_Close()
-
     Dim parentFormName As String: parentFormName = "ReturnTracking_MainForm"
 
     ' Name of the subform CONTROL (not necessarily the subform's Form name)
