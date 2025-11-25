@@ -1,3 +1,4 @@
+```vba
 Option Compare Database
 Option Explicit
 
@@ -103,3 +104,4 @@ Public Sub HandleFormBeforeUpdate(frm As Form, Cancel As Integer)
         Cancel = True   ' block Access auto-save
     End If
 End Sub
+```
