@@ -45,13 +45,16 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
 End Sub
 
 ' FORM CLOSE EVENT
-' When this form closes, requery the parent form's subform
-' — but only if the parent form is currently open.
+' When this form closes, requery the specified subform on the
+' parent form—provided the parent form is currently open.
 Private Sub Form_Close()
+
     Dim parentFormName As String: parentFormName = "ReturnTracking_MainForm"
+
+    ' Name of the subform CONTROL (not necessarily the subform's Form name)
     Dim subformControlName As String: subformControlName = "ReturnTrackingQuery_SubForm"
 
-    HandleFormCloseRefresh parentFormName, subformControlName
+    RefreshParentSubform parentFormName, subformControlName
 End Sub
 
 ' FORM LOAD EVENT
