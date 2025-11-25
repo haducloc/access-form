@@ -13,7 +13,7 @@
 
 ## Code
 
-```
+```vba
 Option Compare Database
 Option Explicit
 
