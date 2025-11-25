@@ -75,7 +75,7 @@
 
 - Create a **Blank Form** (Single Form).  
 - Add search input controls to the top of the form. Use consistent names such as:  
-  - `txtUserName`, `cboUserType`, `chkUserActive`, `subformUserList`
+  - `txtCtName`, `cboReturnType`, `chkReturnComplete`, etc.
 
 - Add command buttons for actions:  
   - Search button → caption **Search**, name **btnSearch**  
@@ -83,7 +83,7 @@
 
 - Drag the datasheet form (**ReturnTrackingQuery_SubForm**) onto the bottom section of the main form.  
   - Access will embed it inside a subform control automatically.  
-  - Rename the subform control appropriately (usually the same name).
+  - Name the subform control. By default it use form object name as the subform control name.
 
 - Open the form to ensure the subform loads correctly.  
 - Switch to **Design View** and update the properties:
