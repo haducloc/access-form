@@ -57,7 +57,9 @@ Private Sub Form_DblClick(Cancel As Integer)
 
 
     ' Open the edit form and pass the WHERE condition
-    DoCmd.OpenForm "ReturnTracking_EditForm", , , whereCondition
+    If FormExists("ReturnTracking_EditForm") Then
+        DoCmd.OpenForm "ReturnTracking_EditForm", , , whereCondition
+    End If
 
 End Sub
 ```
