@@ -78,32 +78,27 @@ Private Sub Form_BeforeUpdate(Cancel As Integer)
 End Sub
 
 ' FORM CLOSE EVENT
-' When this form closes, refresh the parent form's subform (if the parent form is open).
+' When this form closes, requery the parent form's subform
+' — but only if the parent form is currently open.
 Private Sub Form_Close()
 
-    Dim parentFormName As String
-    Dim subFormName As String
     Dim frmParent As Form
+    Dim parentFormName As String: parentFormName = "ReturnTracking_MainForm"
+    
+    ' NOTE: This is the *subform control name*, not the subform's form name.
+    Dim subformName As String: subformName = "ReturnTrackingQuery_SubForm"
 
-    ' Parent form and subform CONTROL names
-    parentFormName = "ReturnTracking_MainForm"
-
-    ' NOTE: This is the subform CONTROL name, not the form object name.
-    subFormName = "ReturnTrackingQuery_SubForm"
-
-    ' Only refresh if the parent form is currently open
+    ' Only refresh if the parent form is open and loaded
     If FormLoaded(parentFormName) Then
 
-        ' Get reference to the parent form
+        ' Get reference to the parent form instance
         Set frmParent = Forms(parentFormName)
 
-        ' Refresh the listing subform
-        frmParent(subFormName).Form.Requery
+        ' Requery the subform inside the parent form
+        frmParent(subformName).Form.Requery
 
     End If
-
 End Sub
-
 
 ' FORM LOAD EVENT
 ' Disable the Delete button when the form is adding a new (unsaved) record.
