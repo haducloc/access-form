@@ -86,7 +86,7 @@ Private Sub Form_Close()
     subFormName = "ReturnTrackingQuery_SubForm"
 
     ' Only refresh if the parent form is currently open
-    If CurrentProject.AllForms(parentFormName).IsLoaded Then
+    If FormLoaded(parentFormName) Then
 
         ' Get reference to the parent form
         Set frmParent = Forms(parentFormName)
