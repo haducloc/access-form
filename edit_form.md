@@ -83,7 +83,7 @@ Private Sub Form_Close()
     parentFormName = "ReturnTracking_MainForm"
 
     ' NOTE: This is the subform CONTROL name, not the form object name.
-    subFormName = "ReturnTrackingQuery_Subform"
+    subFormName = "ReturnTrackingQuery_SubForm"
 
     ' Only refresh if the parent form is currently open
     If CurrentProject.AllForms(parentFormName).IsLoaded Then
