@@ -22,6 +22,7 @@
 
 ```vba
 Option Compare Database
+Option Explicit
 
 ' --------------------------------------------------------------
 ' btnAddNew_Click
