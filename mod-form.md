@@ -76,7 +76,7 @@ Public Sub HandleFormBeforeUpdate(frm As Form, Cancel As Integer)
 End Sub
 
 '============================================================
-' HandleFormCloseRefresh
+' RefreshParentSubform
 '
 ' Called from the Form_Close event of an edit or child form.
 ' If the specified parent form is open, this procedure requeries
@@ -86,7 +86,7 @@ End Sub
 ' missing controls, wrong names, or forms not being loaded)
 ' are ignored to avoid interrupting the close operation.
 '============================================================
-Public Sub HandleFormCloseRefresh(parentFormName As String, subformControlName As String)
+Public Sub RefreshParentSubform(parentFormName As String, subformControlName As String)
 
     Dim frmParent As Form
     On Error GoTo ExitHandler   ' Fail softly — never block form close.
