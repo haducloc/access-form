@@ -8,6 +8,7 @@ Option Explicit
 ' Returns True if a form exists in the project.
 '============================================================
 Public Function FormExists(FormName As String) As Boolean
+    ' Access throws an error here if the form does not exist.
     On Error Resume Next
     Dim ao As AccessObject: Set ao = CurrentProject.AllForms(FormName)
     FormExists = (Err.Number = 0)
