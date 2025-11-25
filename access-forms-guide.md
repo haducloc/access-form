@@ -36,7 +36,7 @@
 
 ### Format Tab  
 - Record Selectors: **No**  
-- Navigation Buttons: **No**
+- Navigation Buttons: **Yes**
 
 ### Form Code Module
 - On Design View, Click on View Code menu on top right navigation.
@@ -52,20 +52,25 @@
 - Choose the **Columnar** layout.  
 - Save the form as **ReturnTracking_EditForm**.  
 - Open the form to confirm it displays properly.  
-- Switch to **Design View** and add two command buttons at the bottom:
-  - Save button → name **btnSave**  
+- Switch to **Design View**, Adjust form size to have bottom space for two command buttons:
+  - Save button → name **btnSave**
   - Delete button → name **btnDelete**
+  - Notes: When drag a Button into the form, click Cancel to indicate this button will handled manually.
 
 ### Data Tab  
 - Data Entry: **No**  
-- Allow Additions: **No**  
-- Allow Deletions: **No**  
-- Allow Edits: **No**  
+- Allow Additions: **Yes**  
+- Allow Deletions: **Yes**  
+- Allow Edits: **Yes**  
 - Allow Filters: **No**
 
 ### Format Tab  
 - Record Selectors: **No**  
 - Navigation Buttons: **No**
+### Other Tab  
+- Pop Up: **Yes**  
+- Modal: **Yes**
+- Shortcut Menu: **No**
 
 ### Form Code Module
 - Open the form’s code module and apply the **edit-form code template**.  
@@ -94,12 +99,15 @@
 - Data Entry: **No**  
 - Allow Additions: **No**  
 - Allow Deletions: **No**  
-- Allow Edits: **No**  
+- Allow Edits: **Yes**  
 - Allow Filters: **No**
 
 ### Format Tab  
 - Record Selectors: **No**  
 - Navigation Buttons: **No**
+  
+### Other Tab  
+- Shortcut Menu: **No**
 
 ### Form Code Module
 - Open the form’s code module and apply the **main-form code template**.  
