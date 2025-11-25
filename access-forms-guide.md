@@ -20,9 +20,9 @@
 
 # Step 2: Create the Datasheet Form
 
+- Select the **ReturnTrackingQuery** view
 - Create a datasheet-style form using **More Forms → Datasheet**.  
-- Set the RecordSource to **ReturnTrackingQuery**.  
-- Include all fields or selected fields as required.  
+- The RecordSource will be **ReturnTrackingQuery**
 - Save the form. In this guide, name it **ReturnTrackingQuery_SubForm**.  
 - Open the form to verify that it displays correctly.  
 - Switch to **Design View** and adjust its properties:
@@ -39,6 +39,7 @@
 - Navigation Buttons: **No**
 
 ### Form Code Module
+- On Design View, Click on View Code menu on top right navigation.
 - Open the form’s code module and apply the **datasheet-form code template**.  
 - Modify the code to match your field names, control names, validation rules, and form names.
 
