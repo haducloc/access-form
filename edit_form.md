@@ -16,7 +16,6 @@
 ```vba
 Option Compare Database
 Option Explicit
-Private InSaveClickContext As Boolean
 
 ' Template: Edit Single Record Form
 '
@@ -29,75 +28,30 @@ Private InSaveClickContext As Boolean
 ' DELETE BUTTON CLICK
 ' Deletes the current record (after confirmation) and closes the form.
 Private Sub btnDelete_Click()
-
-    ' Custom confirmation dialog
-    If MsgBox("Delete this return tracking?", vbYesNo + vbQuestion, "Confirm Delete") = vbNo Then
-        Exit Sub
-    End If
-
-    ' Temporarily disable Access delete prompts
-    DoCmd.SetWarnings False
-
-    ' Delete the record
-    DoCmd.RunCommand acCmdDeleteRecord
-
-    ' Restore warnings
-    DoCmd.SetWarnings True
-
-    ' Close this form
-    DoCmd.Close acForm, Me.Name
-
+    HandleDeleteClick Me
 End Sub
 
 
 ' SAVE BUTTON CLICK
 ' Saves the current record and closes the form.
 Private Sub btnSave_Click()
-    Dim v As ValidationResult
-
-    On Error GoTo ErrHandler
-
-    InSaveClickContext = True
-    DoCmd.RunCommand acCmdSaveRecord
-    InSaveClickContext = False
-
-    DoCmd.Close acForm, Me.Name
-    Exit Sub
-
-ErrHandler:
-    MsgBox "Unexpected error: " & Err.Description, vbCritical
-    InSaveClickContext = False
+    HandleSaveClick Me
 End Sub
 
 ' FORM BEFORE UPDATE
 ' Disable saving automatically for any input value changes
 Private Sub Form_BeforeUpdate(Cancel As Integer)
-    If InSaveClickContext = False Then
-        Cancel = True
-    End If
+    HandleFormBeforeUpdate Me, Cancel
 End Sub
 
 ' FORM CLOSE EVENT
 ' When this form closes, requery the parent form's subform
 ' — but only if the parent form is currently open.
 Private Sub Form_Close()
-
-    Dim frmParent As Form
     Dim parentFormName As String: parentFormName = "ReturnTracking_MainForm"
-    
-    ' NOTE: This is the *subform control name*, not the subform's form name.
-    Dim subformName As String: subformName = "ReturnTrackingQuery_SubForm"
+    Dim subformControlName As String: subformControlName = "ReturnTrackingQuery_SubForm"
 
-    ' Only refresh if the parent form is open and loaded
-    If FormLoaded(parentFormName) Then
-
-        ' Get reference to the parent form instance
-        Set frmParent = Forms(parentFormName)
-
-        ' Requery the subform inside the parent form
-        frmParent(subformName).Form.Requery
-
-    End If
+    HandleFormCloseRefresh parentFormName, subformControlName
 End Sub
 
 ' FORM LOAD EVENT
