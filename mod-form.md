@@ -87,8 +87,8 @@ Public Sub RefreshParentSubform(parentFormName As String, subformControlName As 
     On Error GoTo ErrHandler
 
     ' Ensure parent form exists and is open
-    If Not FormExists(parentFormName) Then GoTo Cleanup
-    If Not FormLoaded(parentFormName) Then GoTo Cleanup
+    If Not FormExists(parentFormName) Then GoTo ErrHandler
+    If Not FormLoaded(parentFormName) Then GoTo ErrHandler
 
     ' Refresh the specified subform control
     Forms(parentFormName)(subformControlName).Form.Requery
