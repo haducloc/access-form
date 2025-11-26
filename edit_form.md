@@ -28,7 +28,7 @@ Option Explicit
 ' DELETE BUTTON CLICK
 ' Deletes the current record (after confirmation) and closes the form.
 Private Sub btnDelete_Click()
-    HandleDeleteClick Me
+    HandleDeleteClick Me, "Are you sure you want to delete this Return Tracking?"
 End Sub
 
 
