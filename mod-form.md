@@ -43,6 +43,18 @@ Public Function ControlExists(FormName As String, ControlName As String) As Bool
     Err.Clear: On Error GoTo 0
 End Function
 
+
+'============================================================
+' GetControl
+' Returns a control if exists on an OPEN form.
+'============================================================
+Public Function GetControl(FormName As String, ControlName As String) As Control
+    On Error Resume Next
+    Set GetControl = Forms(FormName).Controls(ControlName)
+    On Error GoTo 0
+End Function
+
+
 '============================================================
 ' HandleSaveClick
 ' Saves record using Tag="InSaveClickContext" to allow saving,
