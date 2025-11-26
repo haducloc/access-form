@@ -84,7 +84,7 @@ End Sub
 '   subformControlName  = name of the SUBFORM CONTROL
 '-------------------------------------------------------------
 Public Sub RefreshParentSubform(parentFormName As String, subformControlName As String)
-    On Error GoTo Cleanup
+    On Error GoTo ErrHandler
 
     ' Ensure parent form exists and is open
     If Not FormExists(parentFormName) Then GoTo Cleanup
@@ -94,7 +94,7 @@ Public Sub RefreshParentSubform(parentFormName As String, subformControlName As 
     Forms(parentFormName)(subformControlName).Form.Requery
     Forms(parentFormName)(subformControlName).Form.Refresh
 
-Cleanup:
+ErrHandler:
     Exit Sub
 End Sub
 ```
