@@ -32,6 +32,18 @@ End Function
 
 
 '============================================================
+' ControlExists
+' Returns True if a control exists on an OPEN form.
+'============================================================
+Public Function ControlExists(FormName As String, ControlName As String) As Boolean
+    On Error Resume Next
+    Dim ctl As Control
+    Set ctl = Forms(FormName).Controls(ControlName)
+    ControlExists = (Err.Number = 0)
+    Err.Clear: On Error GoTo 0
+End Function
+
+'============================================================
 ' HandleSaveClick
 ' Saves record using Tag="InSaveClickContext" to allow saving,
 ' then closes the form. Must be called from btnSave_Click.
@@ -89,10 +101,13 @@ Public Sub RefreshParentSubform(parentFormName As String, subformControlName As 
     ' Ensure parent form exists and is open
     If Not FormExists(parentFormName) Then GoTo ErrHandler
     If Not FormLoaded(parentFormName) Then GoTo ErrHandler
+    If Not ControlExists(parentFormName, subformControlName) Then GoTo ErrHandler
 
-    ' Refresh the specified subform control
-    Forms(parentFormName)(subformControlName).Form.Requery
-    Forms(parentFormName)(subformControlName).Form.Refresh
+    Dim subForm As Form
+    Set subForm = Forms(parentFormName).Controls(subformControlName).Form
+    
+    subForm.Requery
+    subForm.Refresh
 
 ErrHandler:
     Exit Sub
