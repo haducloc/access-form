@@ -19,15 +19,10 @@ End Function
 ' FormLoaded
 ' Returns True if a form exists AND is loaded/open.
 '============================================================
-Public Function FormLoaded(FormName As String) As Boolean
+Public Function FormLoaded(FormName As String) As Form
     On Error Resume Next
-    Dim ao As AccessObject: Set ao = CurrentProject.AllForms(FormName)
-    If Err.Number <> 0 Then
-        FormLoaded = False
-    Else
-        FormLoaded = ao.IsLoaded
-    End If
-    Err.Clear: On Error GoTo 0
+    Set FormLoaded = Forms(FormName)
+    On Error GoTo 0
 End Function
 
 
@@ -48,9 +43,9 @@ End Function
 ' GetControl
 ' Returns a control if exists on an OPEN form.
 '============================================================
-Public Function GetControl(FormName As String, ControlName As String) As Control
+Public Function GetControl(frm As Form, ControlName As String) As Control
     On Error Resume Next
-    Set GetControl = Forms(FormName).Controls(ControlName)
+    Set GetControl = frm.Controls(ControlName)
     On Error GoTo 0
 End Function
 
@@ -109,17 +104,16 @@ End Sub
 '-------------------------------------------------------------
 Public Sub RefreshParentSubform(parentFormName As String, subformControlName As String)
     On Error GoTo ErrHandler
-
-    ' Ensure parent form exists and is open
-    If Not FormExists(parentFormName) Then GoTo ErrHandler
-    If Not FormLoaded(parentFormName) Then GoTo ErrHandler
-    If Not ControlExists(parentFormName, subformControlName) Then GoTo ErrHandler
-
-    Dim subForm As Form
-    Set subForm = Forms(parentFormName).Controls(subformControlName).Form
     
-    subForm.Requery
-    subForm.Refresh
+    Dim parentForm As Form: Set parentForm = FormLoaded(parentFormName)
+    If parentForm Is Nothing Then GoTo ErrHandler
+    
+    Dim subFormCtrl As Control
+    Set subFormCtrl = GetControl(parentForm, subformControlName)
+    If subFormCtrl Is Nothing Then GoTo ErrHandler
+    
+    subFormCtrl.Form.Requery
+    subFormCtrl.Form.Refresh
 
 ErrHandler:
     Exit Sub
