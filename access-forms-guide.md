@@ -91,7 +91,7 @@
 - Drag the datasheet form (**ReturnTrackingQuery_SubForm**) onto the bottom section of the main form.  
   - Access will embed it inside a subform control automatically.  
   - Name the subform control. By default it use form object name as the subform control name.
-
+- Save the form. In this guide, name it **ReturnTracking_MainForm**.
 - Open the form to ensure the subform loads correctly.  
 - Switch to **Design View** and update the properties:
 
