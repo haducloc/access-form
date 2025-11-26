@@ -74,4 +74,27 @@ End Sub
 Public Sub HandleFormBeforeUpdate(frm As Form, Cancel As Integer)
     If frm.Tag <> "InSaveClickContext" Then Cancel = True
 End Sub
+
+'-------------------------------------------------------------
+' RefreshParentSubform
+'   Refreshes/Requeries a subform control on a parent form,
+'   but ONLY if the parent form exists and is currently loaded.
+'
+'   parentFormName      = name of the parent form (string)
+'   subformControlName  = name of the SUBFORM CONTROL
+'-------------------------------------------------------------
+Public Sub RefreshParentSubform(parentFormName As String, subformControlName As String)
+    On Error GoTo Cleanup
+
+    ' Ensure parent form exists and is open
+    If Not FormExists(parentFormName) Then GoTo Cleanup
+    If Not FormLoaded(parentFormName) Then GoTo Cleanup
+
+    ' Refresh the specified subform control
+    Forms(parentFormName)(subformControlName).Form.Requery
+    Forms(parentFormName)(subformControlName).Form.Refresh
+
+Cleanup:
+    Exit Sub
+End Sub
 ```
