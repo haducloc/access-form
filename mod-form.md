@@ -2,23 +2,16 @@
 Option Compare Database
 Option Explicit
 
-
-'============================================================
-' FormExists
 ' Returns True if a form exists in the project.
-'============================================================
 Public Function FormExists(FormName As String) As Boolean
     On Error Resume Next
     Dim ao As AccessObject: Set ao = CurrentProject.AllForms(FormName)
-    FormExists = (Err.Number = 0)
-    Err.Clear: On Error GoTo 0
+    FormExists = (err.Number = 0)
+    err.Clear: On Error GoTo 0
 End Function
 
 
-'============================================================
-' FormLoaded
 ' Returns True if a form exists AND is loaded/open.
-'============================================================
 Public Function FormLoaded(FormName As String) As Form
     On Error Resume Next
     Set FormLoaded = Forms(FormName)
@@ -26,23 +19,17 @@ Public Function FormLoaded(FormName As String) As Form
 End Function
 
 
-'============================================================
-' ControlExists
 ' Returns True if a control exists on an OPEN form.
-'============================================================
 Public Function ControlExists(FormName As String, ControlName As String) As Boolean
     On Error Resume Next
     Dim ctl As Control
     Set ctl = Forms(FormName).Controls(ControlName)
-    ControlExists = (Err.Number = 0)
-    Err.Clear: On Error GoTo 0
+    ControlExists = (err.Number = 0)
+    err.Clear: On Error GoTo 0
 End Function
 
 
-'============================================================
-' GetControl
 ' Returns a control if exists on an OPEN form.
-'============================================================
 Public Function GetControl(frm As Form, ControlName As String) As Control
     On Error Resume Next
     Set GetControl = frm.Controls(ControlName)
@@ -50,11 +37,7 @@ Public Function GetControl(frm As Form, ControlName As String) As Control
 End Function
 
 
-'============================================================
-' HandleSaveClick
 ' Saves record using Tag="InSaveClickContext" to allow saving,
-' then closes the form. Must be called from btnSave_Click.
-'============================================================
 Public Sub HandleSaveClick(frm As Form)
     On Error GoTo ErrHandler
     
@@ -66,15 +49,12 @@ Public Sub HandleSaveClick(frm As Form)
     Exit Sub
 
 ErrHandler:
-    MsgBox "Unexpected error: " & Err.Description, vbCritical
+    MsgBox "Unexpected error: " & err.Description, vbCritical
     frm.Tag = ""
 End Sub
 
 
-'============================================================
-' HandleDeleteClick
 ' Confirms deletion, executes delete, and closes the form.
-'============================================================
 Public Sub HandleDeleteClick(frm As Form, confirmMsg As String)
     If MsgBox(confirmMsg, vbYesNo + vbQuestion, "Confirm Delete") = vbNo Then Exit Sub
     DoCmd.SetWarnings False
@@ -85,23 +65,12 @@ Public Sub HandleDeleteClick(frm As Form, confirmMsg As String)
 End Sub
 
 
-'============================================================
-' HandleFormBeforeUpdate
 ' Blocks all Access auto-save attempts except during save click.
-' Call from Form_BeforeUpdate.
-'============================================================
 Public Sub HandleFormBeforeUpdate(frm As Form, Cancel As Integer)
     If frm.Tag <> "InSaveClickContext" Then Cancel = True
 End Sub
 
-'-------------------------------------------------------------
-' RefreshParentSubform
-'   Refreshes/Requeries a subform control on a parent form,
-'   but ONLY if the parent form exists and is currently loaded.
-'
-'   parentFormName      = name of the parent form (string)
-'   subformControlName  = name of the SUBFORM CONTROL
-'-------------------------------------------------------------
+' Refreshes/Requeries a subform control on a parent form,
 Public Sub RefreshParentSubform(parentFormName As String, subformControlName As String)
     On Error GoTo ErrHandler
     
