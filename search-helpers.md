@@ -3,34 +3,6 @@ Option Compare Database
 Option Explicit
 
 ' ===========================================
-' CONTROL STATE STRUCT
-' Used by GetXXX() validators to store:
-'   - ConvertedValue : the parsed value (or Null if empty)
-'   - IsValid        : True if value is valid, False if user input is invalid
-' ===========================================
-Public Type ControlState
-    ConvertedValue As Variant
-    IsValid As Boolean
-End Type
-
-' ===========================================
-' MakeState
-' Helper to build a ControlState object in one line.
-' Parameters:
-'   val   - the parsed/converted value
-'   valid - True if input is considered valid
-' Returns:
-'   ControlState with fields assigned
-' ===========================================
-Public Function MakeState(val As Variant, valid As Boolean) As ControlState
-    Dim cs As ControlState
-    cs.ConvertedValue = val
-    cs.IsValid = valid
-    MakeState = cs
-End Function
-
-
-' ===========================================
 ' EscapeAccessWildcards
 ' Escapes Access wildcard characters (* ? # [ ])
 ' so they act as literal characters inside LIKE.
